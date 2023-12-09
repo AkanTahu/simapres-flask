@@ -26,6 +26,12 @@ def postRank():
     df = pd.DataFrame(data)
     namamhs = df["nama"]
     idmhs = df["id"]
+    nimmhs = df["nim"]
+    prodimhs = df["prodi"]
+    jurusanmhs = df["jurusan"]
+    tahunMasukmhs = df["tahunMasuk"]
+    # ipkmhs = df["ipk"]
+    # alphamhs = df["alpha"]
 
     columns_of_interest = ['ipk', 'alpha', 'sertifikat']
     dataset = df[columns_of_interest].values
@@ -41,15 +47,22 @@ def postRank():
     for i in range(0, rank.shape[0]):
         hasil.append({
             "mhsId":int(idmhs[i]),
-            "mhsname":namamhs[i],
+            "namamahas":namamhs[i],
+            "nimmahas":nimmhs[i],
+            "jurusanmahas":jurusanmhs[i],
+            "prodimahas":prodimhs[i],    
             "alternative":'a' + str(i+1),
-            "spk":round(rank[i], 4)
+            "score":round(rank[i], 4)
         })
 
-    sorted_list = sorted(hasil, key=lambda x: x['spk'], reverse=True)
+    sorted_list = sorted(hasil, key=lambda x: x['score'], reverse=True)
+   
 
     send_data = json.dumps(sorted_list)
     
     return send_data
+
+if __name__ == "__main__":
+    app.run()
         
     
