@@ -38,7 +38,7 @@ def postRank():
     
     criterion_type = ['max', 'min', 'max']
 
-    weights = [0.25, 0.40, 0.20]
+    weights = [0.35, 0.30, 0.35]
 
     rank = edas_method(dataset, criterion_type, weights,graph = False, verbose = False)
 
